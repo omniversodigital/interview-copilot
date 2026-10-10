@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/hero-banner.svg" alt="Interview Copilot Banner" width="100%" />
+</p>
+
 # 🎙️ Interview Copilot Suite
 ### Low-Latency Streaming Audio Transcription, Knowledge Retrieval & Technical Assistant
 

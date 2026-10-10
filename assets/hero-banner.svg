@@ -1,0 +1,56 @@
+<svg width="1200" height="420" viewBox="0 0 1200 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="420" rx="16" fill="url(#bg-gradient)"/>
+  
+  <defs>
+    <linearGradient id="bg-gradient" x1="0" y1="0" x2="1200" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#061214"/>
+      <stop offset="50%" stop-color="#0a2228"/>
+      <stop offset="100%" stop-color="#06151a"/>
+    </linearGradient>
+    <linearGradient id="accent-glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <circle cx="1060" cy="130" r="230" fill="url(#accent-glow)"/>
+  <circle cx="140" cy="290" r="190" fill="url(#accent-glow)"/>
+  <rect width="1200" height="420" rx="16" fill="url(#grid)"/>
+
+  <rect x="1" y="1" width="1198" height="418" rx="15" fill="none" stroke="rgba(16, 185, 129, 0.35)" stroke-width="2"/>
+
+  <!-- Status Pill -->
+  <rect x="80" y="60" width="370" height="34" rx="17" fill="rgba(16, 185, 129, 0.1)" stroke="rgba(16, 185, 129, 0.4)" stroke-width="1"/>
+  <circle cx="102" cy="77" r="5" fill="#10b981"/>
+  <text x="120" y="82" fill="#10b981" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">REAL-TIME AI VOICE ENGINE • OMNIVERSO DIGITAL</text>
+
+  <!-- Title -->
+  <text x="80" y="170" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="800" letter-spacing="-1">INTERVIEW COPILOT</text>
+
+  <!-- Subtitle -->
+  <text x="80" y="225" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="400">Low-Latency Speech-to-Text Context Evaluation, Technical Synthesis &amp; Streaming Assistant</text>
+
+  <rect x="80" y="260" width="1040" height="1" fill="rgba(255, 255, 255, 0.08)"/>
+
+  <!-- Badges -->
+  <g transform="translate(80, 295)">
+    <rect x="0" y="0" width="200" height="48" rx="8" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.08)"/>
+    <text x="16" y="20" fill="#64748b" font-family="monospace" font-size="10" font-weight="600">SPEECH RECOGNITION</text>
+    <text x="16" y="38" fill="#10b981" font-family="-apple-system, sans-serif" font-size="14" font-weight="700">OpenAI Whisper Streaming</text>
+
+    <rect x="220" y="0" width="210" height="48" rx="8" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.08)"/>
+    <text x="236" y="20" fill="#64748b" font-family="monospace" font-size="10" font-weight="600">COMMUNICATION PLANE</text>
+    <text x="236" y="38" fill="#38bdf8" font-family="-apple-system, sans-serif" font-size="14" font-weight="700">Low-Latency WebSockets</text>
+
+    <rect x="450" y="0" width="220" height="48" rx="8" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.08)"/>
+    <text x="466" y="20" fill="#64748b" font-family="monospace" font-size="10" font-weight="600">CONTEXT RETRIEVAL</text>
+    <text x="466" y="38" fill="#a855f7" font-family="-apple-system, sans-serif" font-size="14" font-weight="700">Dynamic Knowledge Index</text>
+
+    <rect x="690" y="0" width="220" height="48" rx="8" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.08)"/>
+    <text x="706" y="20" fill="#64748b" font-family="monospace" font-size="10" font-weight="600">USER EXPERIENCE</text>
+    <text x="706" y="38" fill="#facc15" font-family="-apple-system, sans-serif" font-size="14" font-weight="700">Transparent Glass Overlay</text>
+  </g>
+</svg>
