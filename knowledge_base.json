@@ -1,0 +1,261 @@
+{
+  "topics": [
+    {
+      "id": "opa_rego_policy",
+      "category": "Security & Policy Engines",
+      "title": "Deterministic Policy Engines (OPAL & OPA / Rego)",
+      "keywords": [
+        "opa", "rego", "opal", "policy", "authorization", "authz", "rbac", "abac",
+        "permission", "access control", "decoupling policy", "security sidecar",
+        "policy as code", "zero trust"
+      ],
+      "questions": [
+        "Why use OPAL or OPA instead of hardcoding authorization in your application or API gateway?",
+        "How do you handle low-latency policy evaluation in distributed microservices?",
+        "Explain how Policy-as-Code scales across Kubernetes clusters."
+      ],
+      "opening_hook": "In high-consequence distributed architectures, authorization logic evolves at a fundamentally different velocity than business logic, making in-code checks an audit liability.",
+      "architecture_points": [
+        "Decouples authorization completely: Policy is authored as declarative Rego v1, version-controlled in Git, and synced real-time via OPAL WebSockets.",
+        "Zero network hops on critical path: OPA runs as an in-memory local sidecar (localhost:8181) or embedded Go library inside the service mesh.",
+        "Cryptographically verifiable audit trails: Every evaluation decision produces an immutable bundle log shipped to telemetry without impacting request throughput.",
+        "Real-time state hydration: OPAL monitors Kafka/Postgres CDC triggers and pushes state deltas to OPA sidecars in under 50ms."
+      ],
+      "metrics": [
+        "19.9 µs/op evaluation latency in Rego benchmark",
+        "> 50,000 policy evaluations per second per core",
+        "Zero downtime policy updates without microservice pod restarts"
+      ],
+      "tradeoffs": "Sidecar memory overhead vs centralized latency; local cache freshness vs instant revocation guarantees.",
+      "counter_question": "How is your team currently handling dynamic permission invalidation across your distributed edge nodes when user roles change?"
+    },
+    {
+      "id": "uav_swarm_consensus",
+      "category": "Robotics & Edge Computing",
+      "title": "Autonomous UAV Swarms & Edge Robotics",
+      "keywords": [
+        "uav", "drone", "swarm", "robotics", "consensus", "partition", "mavlink", "ros2",
+        "leaderless", "radio silence", "loss of signal", "packet loss", "edge compute",
+        "px4", "autonomous navigation"
+      ],
+      "questions": [
+        "How do you handle consensus and mission synchronization when UAVs face packet loss or radio silence?",
+        "What architecture guarantees fail-safe operation in multi-agent autonomous robotics?",
+        "How do you avoid single points of failure in swarm coordination?"
+      ],
+      "opening_hook": "We design for partition tolerance from day one using leaderless decentralized state machines rather than fragile centralized ground stations.",
+      "architecture_points": [
+        "Decentralized state vector: Each UAV continuously tracks battery reserve, sensor coverage cone, and Euclidean distance to mission waypoints.",
+        "Gossip over MAVLink/ROS2 DDS: Asynchronous peer-to-peer sync allows the swarm to maintain collective situational awareness under high packet loss.",
+        "Deterministic fallback routines: If RF communication drops below threshold, nodes execute localized geometric containment or return-to-rendezvous routines.",
+        "Cost-utility task allocation: Dynamic Hungarian algorithm optimizes workload assignment weighted against individual battery degradation curves."
+      ],
+      "metrics": [
+        "< 15ms local consensus convergence over ad-hoc mesh",
+        "100% mission preservation during up to 40% node loss",
+        "Deterministic fail-safe transition under 250ms of RF loss"
+      ],
+      "tradeoffs": "Local battery compute budget vs cryptographic signature overhead; consistency delay vs collision-avoidance immediacy.",
+      "counter_question": "In your autonomous pipeline, do you run trajectory planning purely onboard or rely on an edge MEC server?"
+    },
+    {
+      "id": "fintech_risk_governor",
+      "category": "Quantitative Systems & Fintech",
+      "title": "Quantitative Infrastructure & Algorithmic Risk",
+      "keywords": [
+        "trading", "fintech", "mt5", "prop firm", "ftmo", "risk", "drawdown",
+        "latency", "circuit breaker", "execution engine", "slippage", "hft",
+        "orderbook", "invariants"
+      ],
+      "questions": [
+        "How do you ensure execution safety and sub-millisecond reliability in high-throughput trading systems?",
+        "How do you enforce strict risk limits like FTMO 5% daily drawdown automatically?",
+        "What is your approach to isolating market execution from risk governance?"
+      ],
+      "opening_hook": "In algorithmic execution, latency without mathematical determinism is fatal—we strictly decouple the fast execution plane from a synchronous risk governor.",
+      "architecture_points": [
+        "Dual-plane architecture: Order dispatchers talk directly over IPC/ZeroMQ to MT5 terminals while the Risk Governor enforces pre-trade invariants.",
+        "Hard-stop circuit breakers: Automated evaluations enforce a 5% max daily drawdown and 2% per-trade equity exposure before packets hit the wire.",
+        "Dynamic slippage bounds: Trades are rejected or routed through twap/vwap slices if market spread expands beyond 2.5 standard deviations.",
+        "Crash-resilient state journal: In-memory order state is continuously mirrored to append-only WAL backed by Redis on local memory."
+      ],
+      "metrics": [
+        "< 2ms end-to-end order execution loop",
+        "Strict 100% FTMO drawdown compliance with zero breach history",
+        "Atomic execution kill-switch activated within 500 microseconds"
+      ],
+      "tradeoffs": "Safety checks introduce microsecond jitter vs catastrophic capital liquidation risk.",
+      "counter_question": "Are your risk checks evaluated asynchronously via event stream or synchronously inline before order submission?"
+    },
+    {
+      "id": "eu_b2b_contractor",
+      "category": "Executive Strategy & Hiring",
+      "title": "The Sovereign European Contractor Advantage",
+      "keywords": [
+        "contractor", "remote", "portugal", "madeira", "timezone", "b2b", "deel",
+        "rippling", "w8ben", "citizen", "eu citizen", "rate", "hire", "why hire you",
+        "compensation", "salary"
+      ],
+      "questions": [
+        "Why should we hire you as a remote B2B contractor from Madeira, Portugal instead of someone local?",
+        "How does working with you across time zones function practically?",
+        "What are the compliance and administrative advantages of your setup?"
+      ],
+      "opening_hook": "Hiring me as a senior B2B contractor gives you Principal-level technical ownership without the legal friction, equity dilution, or overhead of local full-time employment.",
+      "architecture_points": [
+        "Zero immigration or visa friction: As an EU Citizen with Portuguese passport, I can be engaged immediately under standard B2B contracts via Deel, Rippling, or direct invoice.",
+        "Prime UTC+0 / UTC+1 time-zone alignment: Based in Madeira, my normal hours (8:30 AM – 7:30 PM) give 100% overlap with London/Berlin/Zurich and 4-5 hours of live overlap with US East Coast.",
+        "Full-cycle technical autonomy: With 20+ years of CTO and Principal Architect experience, I don't require junior hand-holding; I diagnose, build, test, and deliver end-to-end.",
+        "Turnkey corporate readiness: Pre-configured with clean W-8BEN, institutional NDA compliance, and high-spec local infrastructure."
+      ],
+      "metrics": [
+        "Immediate onboarding in < 24 hours via Deel / Rippling",
+        "10+ hours daily working window across EU & US East Coast",
+        "Zero employee fringe tax overhead for US/EU employers"
+      ],
+      "tradeoffs": "B2B engagement requires clear deliverable milestones rather than open-ended operational tasking.",
+      "counter_question": "What is the primary technical bottleneck your engineering leadership needs resolved in the first 90 days?"
+    },
+    {
+      "id": "distributed_system_design",
+      "category": "Distributed Systems",
+      "title": "High-Throughput Distributed Systems & Microservices",
+      "keywords": [
+        "distributed", "system design", "scalability", "microservices", "cap theorem",
+        "event driven", "kafka", "redis", "caching", "database sharding",
+        "idempotency", "rate limiting", "concurrency"
+      ],
+      "questions": [
+        "How do you design a system that handles 100k requests per second with 99.99% availability?",
+        "How do you guarantee idempotency in distributed payment or messaging systems?",
+        "When would you choose event-driven choreography over orchestration?"
+      ],
+      "opening_hook": "We design high-throughput systems around backpressure, bounded contexts, and explicit failure domains rather than unbounded horizontal scaling.",
+      "architecture_points": [
+        "Asynchronous event ingestion: Edge traffic terminates at high-performance reverse proxies into Kafka/Pulsar partitioned queues with consumer group balancing.",
+        "Distributed idempotency keys: Requests carry unique client UUIDs validated in Redis using atomic SETNX with expiring TTLs before transactional processing.",
+        "Tiered cache architecture: L1 local in-process memory (Guava/Go cache) backed by L2 distributed Redis cluster with cache-aside and negative caching.",
+        "Database read/write segregation: CQRS pattern with write-optimized Postgres/Spanner and read-optimized replicated read pools."
+      ],
+      "metrics": [
+        "Sub-15ms p99 read latency across multi-region deployment",
+        "Zero double-spend / duplicate execution via atomic Redis locks",
+        "100,000+ req/sec throughput with linear horizontal scaling"
+      ],
+      "tradeoffs": "Eventual consistency lag vs distributed locking contention; complexity of distributed saga rollbacks.",
+      "counter_question": "What is your target p99 latency SLA, and are you optimizing primarily for read-heavy or write-heavy burst traffic?"
+    },
+    {
+      "id": "kubernetes_devops_cloud",
+      "category": "Cloud & Infrastructure",
+      "title": "Cloud-Native Infrastructure, Kubernetes & GitOps",
+      "keywords": [
+        "kubernetes", "k8s", "docker", "helm", "terraform", "ci cd", "gitops",
+        "argocd", "observability", "prometheus", "grafana", "istio", "service mesh"
+      ],
+      "questions": [
+        "How do you structure production Kubernetes clusters for zero-downtime deployments and resilience?",
+        "What is your philosophy on Infrastructure-as-Code and GitOps?",
+        "How do you handle observability and root-cause analysis in distributed microservices?"
+      ],
+      "opening_hook": "Infrastructure must be completely declarative, immutable, and reproducible from Git commits down to bare metal.",
+      "architecture_points": [
+        "Strict GitOps workflow: Cluster state is declared in Helm charts and Terraform, continuously reconciled via ArgoCD with automated canary rollouts.",
+        "Zero-trust pod security: Hardened distroless container images, non-root execution, mutual TLS (mTLS) via Istio, and automated network policies.",
+        "Unified telemetry pipeline: OpenTelemetry instrumentation feeding Prometheus metrics, Loki logs, and Tempo distributed tracing with unified trace-id correlation.",
+        "High-density resource governance: Explicit pod resource requests/limits, Horizontal Pod Autoscaling (HPA) driven by custom Prometheus metrics."
+      ],
+      "metrics": [
+        "< 3 minute commit-to-production deployment cycle",
+        "Zero downtime rollouts with automated canary rollbacks on 5xx elevation",
+        "100% reproducible environments across dev, staging, and prod"
+      ],
+      "tradeoffs": "Service mesh resource overhead vs observability/mTLS benefits; Canary complexity vs risk mitigation.",
+      "counter_question": "Are you currently using progressive delivery with automated canaries, or blue-green cutovers?"
+    },
+    {
+      "id": "leadership_incident_response",
+      "category": "Executive Leadership",
+      "title": "CTO Leadership, Technical Debt & Incident Response",
+      "keywords": [
+        "leadership", "cto", "incident", "outage", "technical debt", "culture",
+        "hiring", "mentorship", "management", "post mortem", "blameless", "roadmap"
+      ],
+      "questions": [
+        "Tell me about a major production outage you managed and how you handled it.",
+        "How do you balance aggressive feature delivery with paying down technical debt?",
+        "How do you foster high engineering standards across distributed teams?"
+      ],
+      "opening_hook": "Elite engineering leadership is defined by psychological safety in post-mortems combined with zero tolerance for undisciplined architectural drift.",
+      "architecture_points": [
+        "Incident Command System (ICS): Clear separation between the Incident Commander (who coordinates), technical responders, and the executive communications liaison.",
+        "Blameless Post-Mortems: Focus ruthlessly on systemic and tooling failure points rather than human error, generating actionable prevention tickets.",
+        "Technical Debt Budgeting: Allocate a continuous 20% engineering capacity to refactoring, tooling improvements, and dependency updates to prevent architectural debt accumulation.",
+        "Empowerment through Guardrails: Provide teams with robust CI/CD, automated linters, and architectural templates so they move fast with built-in safety."
+      ],
+      "metrics": [
+        "Reduced MTTR (Mean Time To Recovery) from 45 min to < 8 min",
+        "99.99% multi-year service SLA across mission-critical systems",
+        "Zero recurring outages for previously documented failure modes"
+      ],
+      "tradeoffs": "Immediate velocity vs architectural longevity; strict gating vs developer autonomy.",
+      "counter_question": "How is your engineering organization currently measuring and prioritizing technical debt alongside product roadmap commitments?"
+    },
+    {
+      "id": "ai_agents_multiagent",
+      "category": "Artificial Intelligence & Agents",
+      "title": "Autonomous AI Agent Swarms & LLM Orchestration",
+      "keywords": [
+        "ai", "agent", "swarm", "llm", "multi-agent", "rag", "langchain", "crewai",
+        "reasoning", "hallucination", "guardrails", "tool use", "mcp"
+      ],
+      "questions": [
+        "How do you build reliable, non-hallucinating AI agent systems in production?",
+        "What is your architecture for multi-agent collaboration and tool execution?",
+        "How do you handle context window management and memory in long-running agents?"
+      ],
+      "opening_hook": "Production AI agents fail when treated like magic; they succeed when architected as deterministic state machines that leverage LLMs solely for classification and structured reasoning.",
+      "architecture_points": [
+        "Structured Schema Enforcement: Agent outputs are strictly constrained by JSON schema validators (Pydantic / Instructor) with retry-on-violation loops.",
+        "Dual-tier memory mesh: Ephemeral working memory in Redis combined with long-term semantic indexing in vector stores using hybrid dense/sparse retrieval.",
+        "Model Context Protocol (MCP) tooling: Standardized interfaces for agent tools with deterministic sandboxing and permission boundaries.",
+        "Guardrail verifiers: Independent secondary evaluator agents that audit tool calls and outputs before critical mutations execute."
+      ],
+      "metrics": [
+        "< 0.5% hallucination rate on structured domain extraction",
+        "Sub-second tool invocation routing via local semantic classifiers",
+        "100% auditable deterministic agent trace logs"
+      ],
+      "tradeoffs": "Multiple evaluation passes increase token cost and latency vs output reliability.",
+      "counter_question": "What frameworks are you evaluating for agent orchestration, and how do you test agent behavior non-determinism in CI?"
+    }
+  ],
+  "candidate_profile": {
+    "name": "Jean Carlo Ferreira",
+    "title": "Principal Systems Architect & Deep Tech Lead",
+    "years_experience": "20+",
+    "email": "jeancarlof@gmail.com",
+    "phone": "+351 964 882 331",
+    "location": "Funchal, Madeira, Portugal (EU Citizen)",
+    "timezone": "UTC+0 (WET) / UTC+1 (WEST) — 100% EU overlap, 5h US East Coast overlap",
+    "rate_target": "$150–$250/hr B2B or $240,000–$350,000/yr Remote",
+    "languages": ["English (Bilingual/Fluent)", "Portuguese (Native)", "Spanish (Fluent)"],
+    "verified_projects": [
+      {
+        "name": "Autonomous Systems & Deep Tech",
+        "tech": "OPA, Rego, OPAL, ROS2, MAVLink, Kubernetes, Go, Python, Docker",
+        "impact": "Real-time deterministic policy engines with < 20µs latency; leaderless UAV swarm consensus under RF denial."
+      },
+      {
+        "name": "Casino da Madeira",
+        "tech": "High-Throughput Telemetry, Zero-Downtime Networks, Security Governance",
+        "impact": "Engineered mission-critical 99.999% availability real-time financial telemetry and access control."
+      },
+      {
+        "name": "Xingularity",
+        "tech": "Distributed Multi-Agent AI, Algorithmic Execution, Quantitative Risk",
+        "impact": "Autonomous multi-agent execution pipeline with strict mathematical risk governors."
+      }
+    ]
+  }
+}

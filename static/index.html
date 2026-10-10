@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sovereign Co-Pilot | Real-Time Interview Defense HUD</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Header -->
+    <header class="top-header">
+      <div class="brand-section">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-title">
+          SOVEREIGN CO-PILOT
+          <span class="badge">HUD v1.0</span>
+          <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); border-color: rgba(16, 185, 129, 0.3);">
+            JEAN CARLO FERREIRA
+          </span>
+        </div>
+      </div>
+      <div class="header-meta">
+        <div class="status-pill">
+          <span class="status-dot" id="wsStatusDot"></span>
+          <span id="wsStatusText">Connecting...</span>
+        </div>
+        <div class="status-pill">
+          <span class="status-dot" id="micStatusDot"></span>
+          <span id="micStatusText">Mic Idle</span>
+        </div>
+        <button class="hud-mode-toggle" id="teleprompterToggle" title="Toggle Compact Mode for placement right under your webcam (Shortcut: T)">
+          <span>👁️</span> Teleprompter Mode (T)
+        </button>
+      </div>
+    </header>
+
+    <!-- Audio & Transcription Control Bar -->
+    <section class="control-bar">
+      <button class="mic-btn" id="micBtn">
+        <span id="micIcon">🎙️</span>
+        <span id="micBtnText">Start Listening</span>
+      </button>
+
+      <select class="language-selector" id="langSelect">
+        <option value="en-US">English (US)</option>
+        <option value="en-GB">English (UK)</option>
+        <option value="pt-PT" selected>Portuguese (Portugal)</option>
+        <option value="es-ES">Spanish (Spain)</option>
+      </select>
+
+      <div class="transcription-stream" id="transcriptionStream">
+        <span class="stream-placeholder" id="streamPlaceholder">Waiting for interviewer audio stream or speech...</span>
+        <span id="streamText"></span>
+      </div>
+
+      <form class="query-form" id="queryForm">
+        <input type="text" class="query-input" id="queryInput" placeholder="Simulate / type question..." autocomplete="off">
+        <button type="submit" class="query-btn">Ask</button>
+      </form>
+    </section>
+
+    <!-- Quick Topic Pills Deck -->
+    <nav class="topic-deck" id="topicDeck">
+      <!-- Injected by JavaScript -->
+    </nav>
+
+    <!-- Main Display Area -->
+    <main class="main-display">
+      <!-- HUD Teleprompter Card -->
+      <section class="hud-card">
+        <div class="hud-card-header">
+          <div class="hud-title-wrap">
+            <div class="hud-category" id="hudCategory">Category</div>
+            <h2 id="hudTitle">Select or ask an interview question...</h2>
+          </div>
+          <div class="hud-confidence" id="hudConfidence">0% Match</div>
+        </div>
+
+        <!-- ⚡ 1-Second Opening Hook -->
+        <div class="hook-container">
+          <div class="section-label cyan">
+            <span>⚡</span> 1-Second Opening Hook (Say This First)
+          </div>
+          <p class="hook-text" id="hudHook">
+            Listening for interviewer prompts... Your sub-second opening statement will materialize here.
+          </p>
+        </div>
+
+        <!-- 🏛 Architecture Pillars -->
+        <div class="architecture-container">
+          <div class="section-label cyan">
+            <span>🏛</span> Core Architectural Pillars & Mechanisms
+          </div>
+          <ul class="architecture-list" id="hudArchitecture">
+            <li>Awaiting live technical question...</li>
+          </ul>
+        </div>
+
+        <!-- 📊 Hard Numbers & Real Metrics -->
+        <div class="metrics-container">
+          <div class="section-label emerald">
+            <span>📊</span> Production Benchmarks & Quantitative Invariants
+          </div>
+          <div class="metrics-grid" id="hudMetrics">
+            <!-- Metric pills injected by JS -->
+          </div>
+        </div>
+
+        <!-- ⚠️ Edge Cases & Trade-offs -->
+        <div class="tradeoff-container" id="tradeoffContainer">
+          <div class="section-label amber">
+            <span>⚠️</span> Architectural Trade-offs & Failure Modes
+          </div>
+          <p id="hudTradeoff">Trade-off nuances will appear here.</p>
+        </div>
+
+        <!-- 🎯 Strategic Counter-Question -->
+        <div class="counter-q-container">
+          <div class="section-label purple">
+            <span>🎯</span> Strategic Counter-Question (Take Control of Conversation)
+          </div>
+          <p class="counter-q-text" id="hudCounterQ">
+            "How does your engineering team currently handle..."
+          </p>
+        </div>
+      </section>
+
+      <!-- Side Panel: Candidate Identity & Verified Portfolio -->
+      <aside class="side-panel">
+        <!-- Candidate Profile Card -->
+        <div class="panel-card">
+          <div class="panel-title">
+            <span>👤</span> Executive Dossier
+          </div>
+          <ul class="profile-meta-list">
+            <li>
+              <span class="meta-label">Identity:</span>
+              <span class="meta-val" id="profileName">Jean Carlo Ferreira</span>
+            </li>
+            <li>
+              <span class="meta-label">Role:</span>
+              <span class="meta-val">Principal Systems Architect</span>
+            </li>
+            <li>
+              <span class="meta-label">Experience:</span>
+              <span class="meta-val">20+ Years (Ex-CTO)</span>
+            </li>
+            <li>
+              <span class="meta-label">Location:</span>
+              <span class="meta-val">Madeira, Portugal (EU)</span>
+            </li>
+            <li>
+              <span class="meta-label">Timezone:</span>
+              <span class="meta-val">UTC+0 / UTC+1 (100% EU, 5h US)</span>
+            </li>
+            <li>
+              <span class="meta-label">Target Rate:</span>
+              <span class="meta-val">$150–$250/hr B2B</span>
+            </li>
+            <li>
+              <span class="meta-label">Compliance:</span>
+              <span class="meta-val">W-8BEN / Deel / Direct</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Verified Experience Card -->
+        <div class="panel-card">
+          <div class="panel-title">
+            <span>🏆</span> Verified High-Impact Projects
+          </div>
+          <div class="project-chip">
+            <h4>Autonomous Systems & Deep Tech</h4>
+            <p>Deterministic OPA/Rego policy sidecars (< 20µs latency); ROS2/MAVLink leaderless UAV swarm consensus under RF denial.</p>
+          </div>
+          <div class="project-chip">
+            <h4>Casino da Madeira</h4>
+            <p>99.999% availability real-time financial telemetry, high-throughput security governance, and multi-sensor edge infrastructure.</p>
+          </div>
+          <div class="project-chip">
+            <h4>Xingularity Multi-Agent AI</h4>
+            <p>Distributed autonomous multi-agent pipelines with strict mathematical risk governors & FTMO prop-firm compliance.</p>
+          </div>
+        </div>
+
+        <!-- Hotkey Reference Card -->
+        <div class="panel-card">
+          <div class="panel-title">
+            <span>⌨️</span> Tactical Hotkeys
+          </div>
+          <ul class="profile-meta-list" style="font-size: 12px;">
+            <li><span class="meta-label">Space / M</span><span class="meta-val">Toggle Microphone</span></li>
+            <li><span class="meta-label">T</span><span class="meta-val">Toggle Teleprompter Bar</span></li>
+            <li><span class="meta-label">1 - 8</span><span class="meta-val">Jump to Topic Deck</span></li>
+            <li><span class="meta-label">Esc</span><span class="meta-val">Reset Stream</span></li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
